@@ -20,7 +20,7 @@ Decode one bit at a time by traversing the Huffman tree. There are two possible 
 
 ### Option 2: Large Table
 
-Decode each Huffman code with a single table lookup. The table size will be $2^{\text{max\_huff\_code\_len}}$, where `max_huff_code_len` is the length of the longest Huffman code. 
+Decode each Huffman code with a single table lookup. The table size will be $2^{max\_huff\_code\_len}$, where `max_huff_code_len` is the length of the longest Huffman code. 
 
 Note: most bits from one lookup will be reused in the next lookup, except when encountering the longest Huffman codes.
 
@@ -34,7 +34,7 @@ This approach involves using a table that fits in the L1 cache and, if necessary
 
 This method is similar to the basic implementation but decodes several bits (chunks) at a time, using multiple smaller tables.
 
-In the basic implementation, tables of size $2^1$ are used (one element per bit). Here, tables are sized $2^{\text{chunk\_size}}$, where `chunk_size` could be, for example, 5.
+In the basic implementation, tables of size $2^1$ are used (one element per bit). Here, tables are sized $2^{chunk\_size}$, where `chunk_size` could be, for example, 5.
 
 ### Option 5: Combination of Option 3 and Option 4
 

@@ -34,7 +34,7 @@ This approach involves using a table that fits in the L1 cache and, if necessary
 
 This method is similar to the basic implementation but decodes several bits (chunks) at a time, using multiple smaller tables.
 
-In the basic implementation, tables of size $2^1$ are used (one element per bit). Here, tables are sized $2^{chunk\_size}$, where `chunk_size` could be, for example, 5.
+In the basic implementation, tables of size $2^1$ are used (one element per bit). Here, tables are sized $2^{\texttt{chunk size} }$, where `chunk_size` could be, for example, 5.
 
 ### Option 5: Combination of Option 3 and Option 4
 

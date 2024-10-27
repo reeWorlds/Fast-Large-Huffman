@@ -20,7 +20,7 @@ Decode one bit at a time by traversing the Huffman tree. There are two possible 
 
 ### Option 2: Large Table
 
-Decode each Huffman code with a single table lookup. The table size will be $2^{\mathrm{max\_huff\_code\_len}}$, where `max_huff_code_len` is the length of the longest Huffman code. 
+Decode each Huffman code with a single table lookup. The table size will be $2^{\mathrm{max\_{huff\_{code\_{len}}}}}$, where `max_huff_code_len` is the length of the longest Huffman code. 
 
 Note: most bits from one lookup will be reused in the next lookup, except when encountering the longest Huffman codes.
 

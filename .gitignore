@@ -396,3 +396,11 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 *.sln.iml
+
+
+# Extra files
+*.bin
+*.enc
+*.dec
+*.tbl
+Test1/HuffCodes/HuffCodes/_aux/*.txt

@@ -1,0 +1,12 @@
+
+FTS - First Table Size (parameters of decoding algorithm)
+CHS - Chunk Size (parameters of decoding algorithm)
+
+                               |      decoding time per 1000 iters (s)     |    |  parametrs of algorithms |
+text           huff_max_len    v1.a    v1.b    v2      v3      v4      v5       v3_FTS   V4_CHS   V5_FTS_CHS
+
+alice29        15              0.609   0.587   0.164   0.159   0.255   0.149    12       6        12_3
+sh1            16              1.028   1.060   0.305   0.312   0.413   0.304    13       8        12_3
+hp1            17              1.927   1.827   0.948   0.564   0.738   0.531    13       8        12_4
+bible          20             18.150  16.811  15.032   5.440   7.489   4.882    13       10       12_4
+shakespeare    20             25.299  27.037  20.404   9.124  11.152   8.113    14       7        14_3

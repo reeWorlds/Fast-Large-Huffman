@@ -1,0 +1,11 @@
+
+FTS - First Table Size (parameters of decoding algorithm)
+
+                                  |   decoding time per 1000 iters (s)   |    |  parametrs of algorithms |
+text           huff_min_max_len    Alg1    Alg2                                Alg2_FTS
+
+alice29        4_15                0.328   0.196                               14
+sh1            5_16                0.512   0.312                               15
+hp1            5_17                0.983   0.592                               15
+bible          4_20               10.408   6.009                               15
+shakespeare    5_20               11.727   7.957                               15

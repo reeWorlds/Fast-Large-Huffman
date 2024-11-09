@@ -109,10 +109,12 @@ namespace HuffDecodeAlg2
 			bitStreamRequiredShift += l;
 			bitStream <<= l;
 
-			int32_t posPP = bitStreamRequiredShift >= 32;
-			bitStreamRequiredShift -= posPP << 5;
-			streamPos += posPP;
-			bitStream |= ((uint64_t)stream[streamPos]) << bitStreamRequiredShift; // line 12 (kind of)
+			if (bitStreamRequiredShift >= 32)
+			{
+				bitStreamRequiredShift -= 32;
+				streamPos++;
+				bitStream |= ((uint64_t)stream[streamPos]) << bitStreamRequiredShift;
+			}
 
 			blockCode >>= 32 - l; // line 8
 			blockCode += t_firstCodeDiff[l]; // line 9

@@ -2,7 +2,7 @@
 #include "defines.h"
 #include "HuffDecodeAlg1.h"
 
-#define LOOKUP_BITS 15
+#define LOOKUP_BITS 12
 #define LOOKUP_SIZE (1 << LOOKUP_BITS)
 #define LOOKUP_MASK (LOOKUP_SIZE - 1)
 
@@ -78,9 +78,9 @@ namespace HuffDecodeAlg2
 		for (int32_t firstBits = 0; firstBits < LOOKUP_SIZE; firstBits++)
 		{
 			int32_t l = t_minHuffLen;
-			uint32_t blockCode = firstBits << (32 - LOOKUP_BITS);
+			uint32_t blockCode = (firstBits << (32 - LOOKUP_BITS));
 			
-			while (blockCode >= t_limit[l] && l < LOOKUP_BITS)
+			while (blockCode >= t_limit[l])
 			{
 				l++;
 			}
@@ -94,14 +94,14 @@ namespace HuffDecodeAlg2
 	{
 		uint64_t bitStream = (((uint64_t)stream[0]) << 32) | stream[1];
 		int32_t bitStreamRequiredShift = 0, streamPos = 1;
-		int32_t lookupShift = 32 - LOOKUP_BITS;
+		int32_t lookupShift = 64 - LOOKUP_BITS;
 
 		for (int32_t codeI = 0; codeI < cntCodes; codeI++) // line 3
 		{
 			uint32_t blockCode = bitStream >> 32;
-			int32_t l = t_first[blockCode >> lookupShift]; // alg2 extra code
+			int32_t l = t_first[bitStream >> lookupShift]; // alg2 extra code
 
-			while (blockCode >= t_limit[l]) // lines 6-7 (t_limit is modified)
+			while (blockCode >= t_limit[l]) // lines 6-7
 			{
 				l++;
 			}

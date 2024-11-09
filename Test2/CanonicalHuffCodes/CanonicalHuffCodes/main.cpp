@@ -30,7 +30,7 @@ int32_t g_dictSize, g_cntWords;
 
 void setupParams()
 {
-	g_textName = "shakespeare";
+	g_textName = "alice29";
 }
 
 void generateDictAndCodes()

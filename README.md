@@ -13,3 +13,4 @@ The question is: how can we decode large Huffman codes as quickly as possible?
 ## Tests
 
 - Test1: watch results and explanation in `Test1/results.txt` and `Test1/README.md`
+- Test2: watch results and explanation in `Test2/results.txt` and `Test2/README.md`

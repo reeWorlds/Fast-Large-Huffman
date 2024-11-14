@@ -30,6 +30,12 @@
     <ClCompile Include="HuffDecodeAlg2.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="HuffDecodeAlg1_1.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="HuffDecodeAlg2_1.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="defines.h">
@@ -45,6 +51,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="HuffDecodeAlg2.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="HuffDecodeAlg1_1.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="HuffDecodeAlg2_1.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

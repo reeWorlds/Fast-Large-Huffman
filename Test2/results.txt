@@ -1,11 +1,15 @@
 
 FTS - First Table Size (parameters of decoding algorithm)
 
-                                  |   decoding time per 1000 iters (s)   |    |  parametrs of algorithms |
-text           huff_min_max_len    Alg1    Alg2                                Alg2_FTS
+Alg1 and Alg2 are original algorithms from paper.
+Alg1.1 and Alg2.1 are algorithms from paper + intrinsic optimization.
 
-alice29        4_15                0.328   0.127                               12
-sh1            5_16                0.512   0.202                               12
-hp1            5_17                0.983   0.375                               12
-bible          4_20               10.408   3.637                               12
-shakespeare    5_20               11.727   4.233                               12
+
+                                  |   decoding time per 1000 iters (s)   |    |       parametrs of algorithms       |
+text           huff_min_max_len    Alg1    Alg1.1  Alg2    Alg2.1              Alg2_FTS   Alg2.1_FTS
+
+alice29        4_15                0.323   0.343   0.125   0.119               12         12
+sh1            5_16                0.506   0.545   0.197   0.187               12         12
+hp1            5_17                0.956   1.028   0.360   0.346               12         12
+bible          4_20                9.694  10.304   3.582   3.371               12         12
+shakespeare    5_20               11.456  12.469   4.173   3.979               12         12

@@ -405,3 +405,4 @@ FodyWeavers.xsd
 *.tbl
 Test1/HuffCodes/HuffCodes/_aux/*.txt
 Test2/CanonicalHuffCodes/CanonicalHuffCodes/_aux/*.txt
+Test3/BitstreamTesting/BitstreamTesting/_aux/*.txt

@@ -6,7 +6,9 @@
 #include "TextParser.h"
 #include "HuffEncode.h"
 #include "HuffDecodeAlg1.h"
+#include "HuffDecodeAlg1_1.h"
 #include "HuffDecodeAlg2.h"
+#include "HuffDecodeAlg2_1.h"
 using namespace std;
 
 
@@ -21,7 +23,7 @@ using namespace std;
 
 
 #define HUFF_TABLE_CAPACITY (1 << 10)
-#define ARRAY_BUFF 32
+#define ARRAY_BUFF (256 + 5)
 
 
 string g_textName;
@@ -93,8 +95,12 @@ void decode()
 {
 #if DECODING_TYPE == 1'00
 	using namespace HuffDecodeAlg1;
+#elif DECODING_TYPE == 1'10
+	using namespace HuffDecodeAlg1_1;
 #elif DECODING_TYPE == 2'00
 	using namespace HuffDecodeAlg2;
+#elif DECODING_TYPE == 2'10
+	using namespace HuffDecodeAlg2_1;
 #endif
 
 	if (1)

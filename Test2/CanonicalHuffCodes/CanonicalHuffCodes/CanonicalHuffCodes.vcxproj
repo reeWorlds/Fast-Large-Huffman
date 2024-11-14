@@ -129,7 +129,9 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="HuffDecodeAlg1.cpp" />
+    <ClCompile Include="HuffDecodeAlg1_1.cpp" />
     <ClCompile Include="HuffDecodeAlg2.cpp" />
+    <ClCompile Include="HuffDecodeAlg2_1.cpp" />
     <ClCompile Include="HuffEncode.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="TextParser.cpp" />
@@ -137,7 +139,9 @@
   <ItemGroup>
     <ClInclude Include="defines.h" />
     <ClInclude Include="HuffDecodeAlg1.h" />
+    <ClInclude Include="HuffDecodeAlg1_1.h" />
     <ClInclude Include="HuffDecodeAlg2.h" />
+    <ClInclude Include="HuffDecodeAlg2_1.h" />
     <ClInclude Include="HuffEncode.h" />
     <ClInclude Include="TextParser.h" />
   </ItemGroup>

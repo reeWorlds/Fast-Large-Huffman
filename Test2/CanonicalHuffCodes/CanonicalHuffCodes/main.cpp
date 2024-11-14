@@ -37,7 +37,7 @@ void setupParams()
 
 void generateDictAndCodes()
 {
-	if (1)
+	if (0)
 	{
 		pair<int32_t, int32_t> stats = parseText(g_textName);
 		g_dictSize = stats.first;

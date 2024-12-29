@@ -12,6 +12,11 @@
 #include "HuffV2_1_0.h"
 #include "HuffV2_0_1.h"
 #include "HuffV2_1_1.h"
+#include "HuffV3_21_0.h"
+#include "HuffV3_01_0.h"
+#include "HuffV3_21_1.h"
+#include "HuffV4_0.h"
+#include "HuffV4_1.h"
 using namespace std;
 
 
@@ -35,7 +40,11 @@ int32_t g_dictSize, g_cntWords;
 
 void setupParams()
 {
-	g_textName = "alice29";
+	//g_textName = "alice29";
+	g_textName = "sh1";
+	//g_textName = "hp1";
+	//g_textName = "bible";
+	//g_textName = "shakespeare";
 }
 
 void generateDictAndCodes()
@@ -72,6 +81,16 @@ void encode()
 	using namespace HuffEncodeV2_0_1;
 #elif HUFF_TYPE == 2'1'1
 	using namespace HuffEncodeV2_1_1;
+#elif HUFF_TYPE == 3'21'0
+	using namespace HuffEncodeV3_21_0;
+#elif HUFF_TYPE == 3'01'0
+	using namespace HuffEncodeV3_01_0;
+#elif HUFF_TYPE == 3'21'1
+	using namespace HuffEncodeV3_21_1;
+#elif HUFF_TYPE == 4'0
+	using namespace HuffEncodeV4_0;
+#elif HUFF_TYPE == 4'1
+	using namespace HuffEncodeV4_1;
 #endif
 
 	if (1)
@@ -129,6 +148,16 @@ void decode()
 	using namespace HuffDecodeV2_0_1;
 #elif HUFF_TYPE == 2'1'1
 	using namespace HuffDecodeV2_1_1;
+#elif HUFF_TYPE == 3'21'0
+	using namespace HuffDecodeV3_21_0;
+#elif HUFF_TYPE == 3'01'0
+	using namespace HuffDecodeV3_01_0;
+#elif HUFF_TYPE == 3'21'1
+	using namespace HuffDecodeV3_21_1;
+#elif HUFF_TYPE == 4'0
+	using namespace HuffDecodeV4_0;
+#elif HUFF_TYPE == 4'1
+	using namespace HuffDecodeV4_1;
 #endif
 
 	if (1)

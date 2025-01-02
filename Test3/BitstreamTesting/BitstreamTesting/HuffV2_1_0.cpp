@@ -201,7 +201,7 @@ namespace HuffDecodeV2_1_0
 		{
 			if (t_cntCodesPerLen[i] > 0)
 			{
-				t_firstCode[i] = t_firstCode[i - 1] + t_cntCodesPerLen[i - 1];
+				t_firstCode[i] = t_firstCode[lastHuffCodeLen] + t_cntCodesPerLen[lastHuffCodeLen];
 				t_firstHuffCode[i] = (lastHuffCode + 1) << (i - lastHuffCodeLen);
 				t_firstCodeDiff[i] = t_firstCode[i] - t_firstHuffCode[i];
 				lastHuffCode = t_firstHuffCode[i] + t_cntCodesPerLen[i] - 1;

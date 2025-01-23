@@ -41,8 +41,8 @@ int32_t g_dictSize, g_cntWords;
 void setupParams()
 {
 	//g_textName = "alice29";
-	//g_textName = "sh1";
-	g_textName = "hp1";
+	g_textName = "sh1";
+	//g_textName = "hp1";
 	//g_textName = "bible";
 	//g_textName = "shakespeare";
 }

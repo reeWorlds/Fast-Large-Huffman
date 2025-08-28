@@ -17,6 +17,7 @@
 #include "HuffV3_21_1.h"
 #include "HuffV4_0.h"
 #include "HuffV4_1.h"
+#include "HuffV4_3.h"
 using namespace std;
 
 
@@ -91,6 +92,8 @@ void encode()
 	using namespace HuffEncodeV4_0;
 #elif HUFF_TYPE == 4'1
 	using namespace HuffEncodeV4_1;
+#elif HUFF_TYPE == 4'3
+	using namespace HuffEncodeV4_3;
 #endif
 
 	if (1)
@@ -158,6 +161,8 @@ void decode()
 	using namespace HuffDecodeV4_0;
 #elif HUFF_TYPE == 4'1
 	using namespace HuffDecodeV4_1;
+#elif HUFF_TYPE == 4'3
+	using namespace HuffDecodeV4_3;
 #endif
 
 	if (1)

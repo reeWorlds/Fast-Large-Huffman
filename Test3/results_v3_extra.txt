@@ -1,0 +1,13 @@
+V3.21.1 Optimized Alg2 from paper + L21 optimiation + bitstream optimization.
+V4.3 Alg3 from original (Liddell/Moffat) paper.
+
+For each text and algorithm, optimal parameters are chosen.
+
+                                  | decoding time per 1000 iters (s) |
+text           huff_min_max_len       V4.3    V3.21.1
+
+alice29        4_15                   0.149   0.103
+sh1            5_16                   0.280   0.159
+hp1            5_17                   0.490   0.321
+bible          4_20                   4.188   2.710
+shakespeare    5_20                   6.268   3.750

@@ -57,7 +57,7 @@
     <ClCompile Include="HuffV4_0.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="HuffV4_1.cpp">
+    <ClCompile Include="Baseline.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="HuffV4_3.cpp">
@@ -107,7 +107,7 @@
     <ClInclude Include="HuffV4_0.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="HuffV4_1.h">
+    <ClInclude Include="Baseline.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="HuffV4_3.h">

@@ -8,15 +8,15 @@
 #include "HuffV1_1_0.h"
 #include "HuffV1_0_1.h"
 #include "HuffV1_1_1.h"
-#include "HuffV2_0_0.h"
-#include "HuffV2_1_0.h"
-#include "HuffV2_0_1.h"
-#include "HuffV2_1_1.h"
-#include "HuffV3_21_0.h"
+#include "Opt_1.h"
+#include "Opt_1_4.h"
+#include "Opt_1_3.h"
+#include "Opt_1_3_4.h"
+#include "Opt_1_2.h"
 #include "HuffV3_01_0.h"
-#include "HuffV3_21_1.h"
+#include "Opt_1_2_3.h"
 #include "HuffV4_0.h"
-#include "HuffV4_1.h"
+#include "Baseline.h"
 #include "HuffV4_3.h"
 using namespace std;
 
@@ -46,11 +46,12 @@ void setupParams()
 	//g_textName = "hp1";
 	//g_textName = "bible";
 	//g_textName = "shakespeare";
+	//g_textName = "english.50MB";
 }
 
 void generateDictAndCodes()
 {
-	if (0)
+	if (0) // use `if (1)` when testing text first time
 	{
 		pair<int32_t, int32_t> stats = parseText(g_textName);
 		g_dictSize = stats.first;

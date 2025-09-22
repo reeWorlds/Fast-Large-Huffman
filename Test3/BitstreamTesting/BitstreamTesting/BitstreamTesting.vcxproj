@@ -140,7 +140,7 @@
     <ClCompile Include="HuffV3_21_0.cpp" />
     <ClCompile Include="HuffV3_21_1.cpp" />
     <ClCompile Include="HuffV4_0.cpp" />
-    <ClCompile Include="HuffV4_1.cpp" />
+    <ClCompile Include="Baseline.cpp" />
     <ClCompile Include="HuffV4_3.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="TextParser.cpp" />
@@ -159,7 +159,7 @@
     <ClInclude Include="HuffV3_21_0.h" />
     <ClInclude Include="HuffV3_21_1.h" />
     <ClInclude Include="HuffV4_0.h" />
-    <ClInclude Include="HuffV4_1.h" />
+    <ClInclude Include="Baseline.h" />
     <ClInclude Include="HuffV4_3.h" />
     <ClInclude Include="TextParser.h" />
   </ItemGroup>

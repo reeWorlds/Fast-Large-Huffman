@@ -21,16 +21,16 @@
     <ClCompile Include="TextParser.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="HuffV2_0_1.cpp">
+    <ClCompile Include="Opt_1_3.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="HuffV2_0_0.cpp">
+    <ClCompile Include="Opt_1.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="HuffV2_1_0.cpp">
+    <ClCompile Include="Opt_1_4.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="HuffV2_1_1.cpp">
+    <ClCompile Include="Opt_1_3_4.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="HuffV1_0_0.cpp">
@@ -45,13 +45,13 @@
     <ClCompile Include="HuffV1_1_1.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="HuffV3_21_0.cpp">
+    <ClCompile Include="Opt_1_2.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="HuffV3_01_0.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="HuffV3_21_1.cpp">
+    <ClCompile Include="Opt_1_2_3.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="HuffV4_0.cpp">
@@ -71,16 +71,16 @@
     <ClInclude Include="TextParser.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="HuffV2_0_1.h">
+    <ClInclude Include="Opt_1_3.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="HuffV2_0_0.h">
+    <ClInclude Include="Opt_1.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="HuffV2_1_0.h">
+    <ClInclude Include="Opt_1_4.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="HuffV2_1_1.h">
+    <ClInclude Include="Opt_1_3_4.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="HuffV1_0_0.h">
@@ -95,13 +95,13 @@
     <ClInclude Include="HuffV1_1_1.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="HuffV3_21_0.h">
+    <ClInclude Include="Opt_1_2.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="HuffV3_01_0.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="HuffV3_21_1.h">
+    <ClInclude Include="Opt_1_2_3.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="HuffV4_0.h">

@@ -159,7 +159,7 @@ namespace HuffEncodeV2_1_1
 	}
 }
 
-#define CODES_PER_BITSTREAM 2
+#define CODES_PER_BITSTREAM 3
 #define CODES_BLOCK_SIZE (CODES_PER_BITSTREAM * 64u)
 
 #define LOOKUP_BITS 12

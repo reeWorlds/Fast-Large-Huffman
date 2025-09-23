@@ -28,7 +28,7 @@ using namespace std;
 #define measure_end() QueryPerformanceCounter(&finish); \
 					m_time = ((finish.QuadPart - start.QuadPart) / (double)freq.QuadPart);
 
-#define DECODING_ITERS 1000
+#define DECODING_ITERS 100
 
 
 #define HUFF_TABLE_CAPACITY (1 << 10)

@@ -158,13 +158,13 @@ namespace HuffEncodeV3_21_1
 	}
 }
 
-#define ITERS_PER_BITSTREAM 2
+#define CODES_PER_BITSTREAM 2
 
 #define LOOKUP_BITS 12
 #define LOOKUP_SIZE (1 << LOOKUP_BITS)
 #define LOOKUP_MASK (LOOKUP_SIZE - 1)
 
-#define SKIP_BITS 9
+#define SKIP_BITS 10
 #define SKIP_SIZE (1 << SKIP_BITS)
 #define SKIP_MASK (SKIP_SIZE - 1)
 
@@ -327,7 +327,7 @@ namespace HuffDecodeV3_21_1
 
 		for (int32_t codeI = 0; codeI < cntCodes;)
 		{
-			for (int32_t i = 0; i < ITERS_PER_BITSTREAM; i++)
+			for (int32_t i = 0; i < CODES_PER_BITSTREAM; i++)
 			{
 				uint32_t blockCode = bitStream >> skipShift;
 				bitStreamRequiredShift += _shift[blockCode];

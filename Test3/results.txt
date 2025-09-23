@@ -1,22 +1,21 @@
+1 - remove extra addition
+2 - L21 optimization
+3 - bitstream optimization
+4 - SIMD optimization
 
-FTS - First Table Size (parameters of decoding algorithm)
-CPB - Codes Per Bitstream (typically, = 64 / huff_max_len). Preferably hardcoded as constant during compaltion. 
+For each text and algorithm, optimal parameters are chosen.
 
-A1.0.0 and A2.0.0 are algorithms from paper.
-A1.1.0 and A2.1.0 are algorithms from paper + intrinsic optimization.
-A1.0.1 and A2.0.1 are algorithms from paper + bitstream optimization.
-A1.1.1 and A2.1.1 are algorithms from paper + intrinsic optimization + bitstream optimization.
+                                  | decoding time per 1000 iters (s) |
+text           huff_min_max_len       Base    1       1+2     1+3     1+4     1+2+3   1+3+4
+                                                              
+alice29        4_15                   0.136   0.124   0.113   0.101   0.118   0.106   0.098
+sh1            5_16                   0.208   0.195   0.195   0.160   0.181   0.179   0.154
+hp1            5_17                   0.385   0.362   0.348   0.309   0.341   0.328   0.293
+bible          4_20                   3.738   3.516   3.071   3.051   3.279   2.836   2.855
+shakespeare    5_20                   4.322   4.114   4.172   3.507   3.873   3.828   3.260
 
-                                  |               decoding time per 1000 iters (s)               |    | parametrs of algorithms |
-text           huff_min_max_len    A1.0.0  A1.1.0  A1.0.1  A1.1.1  A2.0.0  A2.1.0  A2.0.1  A2.1.1      CPB   FTS
-
-alice29        4_15                0.350   0.367   0.296   0.313   0.120   0.117   0.098   0.097       4     12
-sh1            5_16                0.554   0.579   0.474   0.481   0.187   0.180   0.157   0.153       4     12
-hp1            5_17                1.020   1.070   0.929   0.932   0.358   0.341   0.311   0.295       3     12
-bible          4_20               10.285  10.874   9.330   9.189   3.414   3.301   2.977   2.864       3     12
-shakespeare    5_20               12.501  13.122  11.377  11.309   4.050   3.879   3.407   3.320       3     12
-
-Note 1:
-For "hp1", CPB = 4 is ok (decoding is bitexact).
-For CPB = 4, decoding time on "hp1" for A2.0.1 and A2.1.1 is 0.294 and 0.287 respectively.
-Hovever, such optimization is unpractical, as in general case of 4 consecutive 17-bit codes 68 bits will be taken from 64-bit bitstream.
+                                  | decoding time per 100 iters (s) |
+text           huff_min_max_len       Base    1       1+2     1+3     1+4     1+2+3   1+3+4
+                                                              
+english.50MB    4_23                  5.047   4.504   4.254   4.193   4.330   4.174   3.858
+shakespeare_256 5_20                  2.671   2.281   1.574   2.079   2.171   1.369   2.017

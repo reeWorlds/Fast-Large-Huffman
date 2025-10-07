@@ -143,6 +143,7 @@
     <ClCompile Include="Baseline.cpp" />
     <ClCompile Include="HuffV4_3.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Table.cpp" />
     <ClCompile Include="TextParser.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -161,6 +162,7 @@
     <ClInclude Include="HuffV4_0.h" />
     <ClInclude Include="Baseline.h" />
     <ClInclude Include="HuffV4_3.h" />
+    <ClInclude Include="Table.h" />
     <ClInclude Include="TextParser.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

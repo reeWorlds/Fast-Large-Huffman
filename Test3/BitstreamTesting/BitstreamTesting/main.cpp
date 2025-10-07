@@ -18,6 +18,7 @@
 #include "HuffV4_0.h"
 #include "Baseline.h"
 #include "HuffV4_3.h"
+#include "Table.h"
 using namespace std;
 
 
@@ -95,6 +96,8 @@ void encode()
 	using namespace HuffEncodeV4_1;
 #elif HUFF_TYPE == 4'3
 	using namespace HuffEncodeV4_3;
+#elif HUFF_TYPE == 5'0
+	using namespace HuffEncodeV5_0;
 #endif
 
 	if (1)
@@ -164,6 +167,8 @@ void decode()
 	using namespace HuffDecodeV4_1;
 #elif HUFF_TYPE == 4'3
 	using namespace HuffDecodeV4_3;
+#elif HUFF_TYPE == 5'0
+	using namespace HuffDecodeV5_0;
 #endif
 
 	if (1)

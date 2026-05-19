@@ -104,6 +104,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -132,6 +133,8 @@
     <ClCompile Include="HuffV1_0_1.cpp" />
     <ClCompile Include="HuffV1_1_0.cpp" />
     <ClCompile Include="HuffV1_1_1.cpp" />
+    <ClCompile Include="HuffV6_0_0.cpp" />
+    <ClCompile Include="HuffV6_1_1.cpp" />
     <ClCompile Include="Opt_1.cpp" />
     <ClCompile Include="Opt_1_3.cpp" />
     <ClCompile Include="Opt_1_4.cpp" />
@@ -152,6 +155,8 @@
     <ClInclude Include="HuffV1_0_1.h" />
     <ClInclude Include="HuffV1_1_0.h" />
     <ClInclude Include="HuffV1_1_1.h" />
+    <ClInclude Include="HuffV6_0_0.h" />
+    <ClInclude Include="HuffV6_1_1.h" />
     <ClInclude Include="Opt_1.h" />
     <ClInclude Include="Opt_1_3.h" />
     <ClInclude Include="Opt_1_4.h" />

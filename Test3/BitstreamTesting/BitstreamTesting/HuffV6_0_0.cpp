@@ -2,13 +2,17 @@
 #include <array>
 #include <algorithm>
 #include <iostream>
-#include <immintrin.h>
 #include "defines.h"
-#include "Opt_1_3_4.h"
+#include "HuffV6_0_0.h"
 using namespace std;
 
 
-namespace HuffEncodeV2_1_1
+#define LOOKUP_BITS 12
+#define LOOKUP_SIZE (1 << LOOKUP_BITS)
+#define LOOKUP_MASK (LOOKUP_SIZE - 1)
+
+
+namespace HuffEncodeV6_0_0
 {
 	void fillHuffLens(vector <array<int32_t, 2> >& cntPar, vector <uint32_t>& huffLens, uint32_t dictSize,
 		int32_t i, uint32_t depth)
@@ -34,13 +38,6 @@ namespace HuffEncodeV2_1_1
 		{
 			cntPar[codes[i]][0]++;
 		}
-
-		double entropyBits = 0;
-		for (int32_t i = 0; i < dictSize; i++)
-		{
-			entropyBits -= cntPar[i][0] * log2(double(cntPar[i][0]) / cntCodes);
-		}
-		cout << "Entropy bytes: " << int64_t(entropyBits / 8) << "\n";
 
 		// build some tree to get huffman codes lengths
 		int32_t iLeaf = dictSize - 1, iNode = dictSize, nextNode = dictSize;
@@ -107,6 +104,27 @@ namespace HuffEncodeV2_1_1
 			cntCodesPerLen[huffLens[i]]++;
 		}
 
+		// MODIFICATION START
+		for (int32_t len = LOOKUP_BITS + 1; len < maxHuffCodeLen; len++)
+		{
+			int32_t bucketSize = 1 << (len - LOOKUP_BITS);
+			int32_t rest = cntCodesPerLen[len] & (bucketSize - 1);
+
+			cntCodesPerLen[len] -= rest;
+			cntCodesPerLen[len + 1] += rest;
+		}
+
+		int32_t curIdx = 0;
+		for (int32_t i = minHuffCodeLen; i <= maxHuffCodeLen; i++)
+		{
+			for (int32_t j = 0; j < cntCodesPerLen[i]; j++)
+			{
+				huffLens[curIdx] = i;
+				curIdx++;
+			}
+		}
+		// MODIFICATION END
+
 		// make codes
 		huffCodes[0] = 0;
 		for (int32_t i = 1; i < dictSize; i++)
@@ -148,11 +166,6 @@ namespace HuffEncodeV2_1_1
 		stream[streamLen + 7] = 0;
 		streamLen += 8;
 
-		for (int32_t i = 0; i + 1 < streamLen; i += 2)
-		{
-			swap(stream[i], stream[i + 1]);
-		}
-
 		huffTableLen = 0;
 		*(uint32_t*)(huffTable + huffTableLen) = minHuffCodeLen;
 		huffTableLen += 4;
@@ -166,14 +179,8 @@ namespace HuffEncodeV2_1_1
 	}
 }
 
-#define CODES_PER_BITSTREAM 3
-#define CODES_BLOCK_SIZE (CODES_PER_BITSTREAM * 64u)
 
-#define LOOKUP_BITS 12
-#define LOOKUP_SIZE (1 << LOOKUP_BITS)
-#define LOOKUP_MASK (LOOKUP_SIZE - 1)
-
-namespace HuffDecodeV2_1_1
+namespace HuffDecodeV6_0_0
 {
 	uint32_t t_minHuffLen, t_maxHuffLen;
 	uint32_t t_cntCodesPerLen[32];
@@ -181,7 +188,7 @@ namespace HuffDecodeV2_1_1
 	uint32_t t_firstCodeDiff[32]; // = t_firstCode[i] - t_firstHuffCode[i] (2 operation -> 1 operation)
 	uint64_t t_limit[32];
 
-#if HUFF_TYPE == 2'1'1
+#if HUFF_TYPE == 6'0'0
 	int8_t t_first[LOOKUP_SIZE];
 #else
 	int8_t t_first[2];
@@ -259,67 +266,29 @@ namespace HuffDecodeV2_1_1
 	void huffDecode(uint32_t* codes, uint32_t cntCodes, uint32_t dictSize, uint32_t* stream,
 		uint32_t streamLen)
 	{
-		uint32_t tmpCodes[CODES_BLOCK_SIZE];
-		uint32_t tmpLens[CODES_BLOCK_SIZE];
-
-		uint64_t* stream64 = (uint64_t*)stream;
-
-		uint64_t bitStream = stream64[0];
-		int32_t bitStreamRequiredShift = 0, streamPos = 0;
+		uint64_t bitStream = (((uint64_t)stream[0]) << 32) | stream[1];
+		int32_t bitStreamRequiredShift = 0, streamPos = 1;
 		int32_t lookupShift = 64 - LOOKUP_BITS;
 
-		__m256i v32 = _mm256_set1_epi32(32);
-
-		for (int32_t codeI = 0; codeI < cntCodes; codeI += CODES_BLOCK_SIZE)
+		for (int32_t codeI = 0; codeI < cntCodes; codeI++)
 		{
-			int32_t codesInBlock = min(CODES_BLOCK_SIZE, cntCodes - codeI);
+			uint32_t blockCode = bitStream >> 32;
+			int32_t l = t_first[bitStream >> lookupShift];
 
-			for (int32_t i = 0; i < codesInBlock; i += CODES_PER_BITSTREAM)
+			bitStreamRequiredShift += l;
+			bitStream <<= l;
+
+			if (bitStreamRequiredShift >= 32)
 			{
-				for (int32_t j = 0; j < CODES_PER_BITSTREAM; j++)
-				{
-					uint32_t blockCode = bitStream >> 32;
-					int32_t l = t_first[bitStream >> lookupShift];
-
-					while (blockCode >= t_limit[l])
-					{
-						l++;
-					}
-
-					uint32_t curCodeI = j + i;
-
-					bitStreamRequiredShift += l;
-					bitStream <<= l;
-
-					tmpCodes[curCodeI] = blockCode;
-					tmpLens[curCodeI] = l;
-				}
-
-				if (bitStreamRequiredShift > 64)
-				{
-					bitStreamRequiredShift -= 64;
-					streamPos++;
-					bitStream |= stream64[streamPos] << bitStreamRequiredShift;
-				}
-				bitStream |= stream64[streamPos + 1] >> (64 - bitStreamRequiredShift);
+				bitStreamRequiredShift -= 32;
+				streamPos++;
+				bitStream |= ((uint64_t)stream[streamPos]) << bitStreamRequiredShift;
 			}
 
-			for (int32_t i = 0; i < CODES_BLOCK_SIZE; i += 8)
-			{
-				// load intermediate value of `blockCode` and `l`
-				__m256i codes_8 = _mm256_loadu_si256((__m256i*) & tmpCodes[i]);
-				__m256i lens_8 = _mm256_loadu_si256((__m256i*) & tmpLens[i]);
+			blockCode >>= (32 - l);
+			blockCode += t_firstCodeDiff[l];
 
-				// blockCode >>= 32 - l
-				__m256i shifted_8 = _mm256_srlv_epi32(codes_8, _mm256_sub_epi32(v32, lens_8));
-				// load (lookup) value of t_firstCodeDiff[l]
-				__m256i lookup_8 = _mm256_i32gather_epi32((const int32_t*)t_firstCodeDiff, lens_8, 4);
-
-				// blockCode += t_firstCodeDiff[l]
-				__m256i result_8 = _mm256_add_epi32(shifted_8, lookup_8);
-				// store decoded codes
-				_mm256_storeu_si256((__m256i*) & codes[codeI + i], result_8);
-			}
+			codes[codeI] = blockCode;
 		}
 	}
 }

@@ -8,7 +8,12 @@
 using namespace std;
 
 
-namespace HuffEncodeV2_1_1
+#define LOOKUP_BITS 12
+#define LOOKUP_SIZE (1 << LOOKUP_BITS)
+#define LOOKUP_MASK (LOOKUP_SIZE - 1)
+
+
+namespace HuffEncodeV6_1_1
 {
 	void fillHuffLens(vector <array<int32_t, 2> >& cntPar, vector <uint32_t>& huffLens, uint32_t dictSize,
 		int32_t i, uint32_t depth)
@@ -107,6 +112,27 @@ namespace HuffEncodeV2_1_1
 			cntCodesPerLen[huffLens[i]]++;
 		}
 
+		// MODIFICATION START
+		for (int32_t len = LOOKUP_BITS + 1; len < maxHuffCodeLen; len++)
+		{
+			int32_t bucketSize = 1 << (len - LOOKUP_BITS);
+			int32_t rest = cntCodesPerLen[len] & (bucketSize - 1);
+
+			cntCodesPerLen[len] -= rest;
+			cntCodesPerLen[len + 1] += rest;
+		}
+
+		int32_t curIdx = 0;
+		for (int32_t i = minHuffCodeLen; i <= maxHuffCodeLen; i++)
+		{
+			for (int32_t j = 0; j < cntCodesPerLen[i]; j++)
+			{
+				huffLens[curIdx] = i;
+				curIdx++;
+			}
+		}
+		// MODIFICATION END
+
 		// make codes
 		huffCodes[0] = 0;
 		for (int32_t i = 1; i < dictSize; i++)
@@ -169,11 +195,8 @@ namespace HuffEncodeV2_1_1
 #define CODES_PER_BITSTREAM 3
 #define CODES_BLOCK_SIZE (CODES_PER_BITSTREAM * 64u)
 
-#define LOOKUP_BITS 12
-#define LOOKUP_SIZE (1 << LOOKUP_BITS)
-#define LOOKUP_MASK (LOOKUP_SIZE - 1)
 
-namespace HuffDecodeV2_1_1
+namespace HuffDecodeV6_1_1
 {
 	uint32_t t_minHuffLen, t_maxHuffLen;
 	uint32_t t_cntCodesPerLen[32];
@@ -181,7 +204,7 @@ namespace HuffDecodeV2_1_1
 	uint32_t t_firstCodeDiff[32]; // = t_firstCode[i] - t_firstHuffCode[i] (2 operation -> 1 operation)
 	uint64_t t_limit[32];
 
-#if HUFF_TYPE == 2'1'1
+#if HUFF_TYPE == 6'1'1
 	int8_t t_first[LOOKUP_SIZE];
 #else
 	int8_t t_first[2];
@@ -280,11 +303,6 @@ namespace HuffDecodeV2_1_1
 				{
 					uint32_t blockCode = bitStream >> 32;
 					int32_t l = t_first[bitStream >> lookupShift];
-
-					while (blockCode >= t_limit[l])
-					{
-						l++;
-					}
 
 					uint32_t curCodeI = j + i;
 

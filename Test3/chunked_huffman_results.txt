@@ -1,0 +1,76 @@
+- "Opt1_3_4" is previous baseline (see results.txt in this folder)
+- "k = x" denotes new idea with different number of buckets (num_buckets = 2^k)
+- All decompressed files were checked to be bit-exact.
+
+Decompression speed (seconds, per 1000 (or 100) operations):
++----------------+------------+----------+----------+
+|      Text      |  Opt1_3_4  |   k=12   |   k=10   |
++----------------+------------+----------+----------+
+|    alice29     |   0.098    |  0.088   |  0.087   |
+|                |            |  -10.2%  |  -11.2%  |
++----------------+------------+----------+----------+
+|      sh1       |   0.149    |  0.137   |  0.135   |
+
+|                |            |  -8.1%   |  -9.4%   |
++----------------+------------+----------+----------+
+|      hp1       |   0.279    |  0.253   |  0.253   |
+|                |            |  -9.3%   |  -9.3%   |
++----------------+------------+----------+----------+
+|     bible      |   0.281    |  0.255   |  0.251   |
+|                |            |  -9.3%   |  -10.7%  |
++----------------+------------+----------+----------+
+|  shakespeare   |   1.833    |  1.707   |  1.720   |
+|                |            |  -6.9%   |  -6.2%   |
++----------------+------------+----------+----------+
+|  english.50MB  |   3.596    |  3.254   |  3.201   |
+|                |            |  -9.5%   |  -11.0%  |
++----------------+------------+----------+----------+
+
+Compressed size (in bytes), overhead over entropy (in %), overhead over Opt1_3_4 (in bytes):
++--------------+------------+------------+------------+------------+------------+------------+------------+------------+------------+------------+
+|     Text     |  Entropy   |  Opt1_3_4  |    k=14    |    k=13    |    k=12    |    k=11    |    k=10    |    k=9     |    k=8     |    k=7     |
++--------------+------------+------------+------------+------------+------------+------------+------------+------------+------------+------------+
+|   alice29    |   29`747   |   29`860   |   29`860   |   29`860   |   29`860   |   29`860   |   29`864   |   29`864   |   29`904   |   29`928   |
+|              |            |   +0.38%   |   +0.38%   |   +0.38%   |   +0.38%   |   +0.38%   |   +0.39%   |   +0.39%   |   +0.53%   |   +0.61%   |
+|              |            |            |     -      |     -      |     -      |     -      |     +4     |     +4     |    +44     |    +68     |
++--------------+------------+------------+------------+------------+------------+------------+------------+------------+------------+------------+
+|     sh1      |   51`926   |   52`124   |   52`124   |   52`124   |   52`124   |   52`132   |   52`132   |   52`140   |   52`180   |   52`240   |
+|              |            |   +0.38%   |   +0.38%   |   +0.38%   |   +0.38%   |   +0.40%   |   +0.40%   |   +0.41%   |   +0.49%   |   +0.60%   |
+|              |            |            |     -      |     -      |     -      |     +8     |     +8     |    +16     |    +56     |    +116    |
++--------------+------------+------------+------------+------------+------------+------------+------------+------------+------------+------------+
+|     hp1      |   95`450   |   95`792   |   95`792   |   95`792   |   95`792   |   95`800   |   95`816   |   95`840   |   95`904   |   96`104   |
+|              |            |   +0.36%   |   +0.36%   |   +0.36%   |   +0.36%   |   +0.37%   |   +0.38%   |   +0.41%   |   +0.48%   |   +0.69%   |
+|              |            |            |     -      |     -      |     -      |     +8     |    +24     |    +48     |    +112    |    +312    |
++--------------+------------+------------+------------+------------+------------+------------+------------+------------+------------+------------+
+|    bible     |  850`669   |  853`812   |  853`824   |  853`824   |  853`860   |  853`980   |  854`164   |  854`332   |  855`472   |  857`772   |
+|              |            |   +0.37%   |   +0.37%   |   +0.37%   |   +0.38%   |   +0.39%   |   +0.41%   |   +0.43%   |   +0.56%   |   +0.83%   |
+|              |            |            |    +12     |    +12     |    +48     |    +168    |    +352    |    +520    |   +1`660   |   +3`960   |
++--------------+------------+------------+------------+------------+------------+------------+------------+------------+------------+------------+
+| shakespeare  | 3`131`931  | 3`149`568  | 3`149`724  | 3`149`920  | 3`150`216  | 3`151`480  | 3`153`516  | 3`164`720  | 3`161`432  | 3`190`280  |
+|              |            |   +0.56%   |   +0.57%   |   +0.57%   |   +0.58%   |   +0.62%   |   +0.69%   |   +1.05%   |   +0.94%   |   +1.86%   |
+|              |            |            |    +156    |    +352    |    +648    |   +1`912   |   +3`948   |  +15`152   |  +11`864   |  +40`712   |
++--------------+------------+------------+------------+------------+------------+------------+------------+------------+------------+------------+
+| english.50MB | 12`389`797 | 12`421`116 | 12`421`244 | 12`421`556 | 12`421`892 | 12`423`924 | 12`426`916 | 12`433`552 | 12`442`296 | 12`462`764 |
+|              |            |   +0.25%   |   +0.25%   |   +0.26%   |   +0.26%   |   +0.28%   |   +0.30%   |   +0.35%   |   +0.42%   |   +0.59%   |
+|              |            |            |    +128    |    +440    |    +776    |   +2`808   |   +5`800   |  +12`436   |  +21`180   |  +41`648   |
++--------------+------------+------------+------------+------------+------------+------------+------------+------------+------------+------------+
+
+
+Bucketed canonical huffman idea.
+
+Lets say we have canonical huffman codes. The decoding algorithm has while loop "while (blockCode >= t_limit[l]) { l++; }". It is required to determine code length when "int32_t l = t_first[bitStream >> lookupShift];" fails.
+
+The idea is to remove this while loop by slightly sacrificing compression ratio. If codes with prefix `p` have diffrent lengths (and these lengths >= k) => all codes with prefix `p` are forced to have the same length. This modified code is called "bucketed" because each bucket (corresponding to `p`) has fixed code length. The enforcement is implemented by just forcing all codes to max length in bucked.
+
+Example.
+Lets say k = 2 and we have:
+codes 0, 100, 101, 110,  1110, 1111 with lengths 1, 3, 3, 3, 4, 4.
+We can see that bucket `p=11` has lengths 3 and 4 (e.g. "11|0" vs "11|10"). Bucketed code could be:
+codes 0, 100, 101, 1100, 1101, 1110 with lengths 1, 3, 3, 4, 4, 4.
+
+For implementation look at lines 115-134 of HuffV6_1_1.cpp. Some constant defintions are moved up (lines 11-13), but everything else is identical to Opt_1_3_4.cpp.
+Note that `k` (LOOKUP_BITS) should be identical for compressor and decompressor.
+
+Why this near-optimal?
+For typical `k = 10` or `k = 12` there are 1024 or 4096 buckets. Out of them only buckets with different lengths are adjusted. The trick is that only buckets crossing code-length boundaries need adjustment, so the number of adjusted buckets is bounded by about `max_code_len - k`. Even on large text with `max_code_len = 32` (and considering `k = 12`) there would be about 20 out of 4096 buckets with adjusted codes. Not all codes in these buckets have their length increased (only ones with smaller initial length). Also, code lengths are typically increased by 1 bit which is small relative to original code length (e.g. 15->16 means +6.6%).
+In conclusion: only small number of buckets (20 out of 4096) are adjusted, not all codes in these 20 buckeds are lengthened, and even lengthened codes have small overhead (2-8%).

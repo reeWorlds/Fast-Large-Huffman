@@ -19,6 +19,8 @@
 #include "Baseline.h"
 #include "HuffV4_3.h"
 #include "Table.h"
+#include "HuffV6_0_0.h"
+#include "HuffV6_1_1.h"
 using namespace std;
 
 
@@ -29,7 +31,7 @@ using namespace std;
 #define measure_end() QueryPerformanceCounter(&finish); \
 					m_time = ((finish.QuadPart - start.QuadPart) / (double)freq.QuadPart);
 
-#define DECODING_ITERS 100
+#define DECODING_ITERS 1000
 
 
 #define HUFF_TABLE_CAPACITY (1 << 10)
@@ -98,6 +100,10 @@ void encode()
 	using namespace HuffEncodeV4_3;
 #elif HUFF_TYPE == 5'0
 	using namespace HuffEncodeV5_0;
+#elif HUFF_TYPE == 6'0'0
+	using namespace HuffEncodeV6_0_0;
+#elif HUFF_TYPE == 6'1'1
+	using namespace HuffEncodeV6_1_1;
 #endif
 
 	if (1)
@@ -169,6 +175,10 @@ void decode()
 	using namespace HuffDecodeV4_3;
 #elif HUFF_TYPE == 5'0
 	using namespace HuffDecodeV5_0;
+#elif HUFF_TYPE == 6'0'0
+	using namespace HuffDecodeV6_0_0;
+#elif HUFF_TYPE == 6'1'1
+	using namespace HuffDecodeV6_1_1;
 #endif
 
 	if (1)

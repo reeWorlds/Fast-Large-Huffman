@@ -2,6 +2,8 @@
 
 An attempt at fast decoding :)
 
+Main code at `Test3/`.
+
 ## Problem
 
 This project tackles the problem of decoding a sequence (such as a text) that contains multiple (>256) unique Huffman codes. 

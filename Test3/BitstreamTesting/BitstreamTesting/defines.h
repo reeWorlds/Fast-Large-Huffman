@@ -16,6 +16,6 @@
 // `2'1'1`   opt_1 + opt_3 + opt_4
 // `5'0`     table
 // `6'0`0`   bucketed
-// `6'0`0`   bucketed + opt_1 + opt_3 + opt_4
+// `6'1`1`   bucketed + opt_1 + opt_3 + opt_4
 
 #define HUFF_TYPE 2'1'1
